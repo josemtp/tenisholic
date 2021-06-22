@@ -61,6 +61,7 @@ export default class Settings extends Component {
         velo: this.state.velo,
       };
       this.storeData(obj);
+      console.log(obj)
       if(this.state._showDialog){
         this.setState({
           showDialog: false  
@@ -81,7 +82,6 @@ export default class Settings extends Component {
       } catch (error) {
         
       }
-      
       return true;
     });
     this.getData();
@@ -104,6 +104,7 @@ export default class Settings extends Component {
   storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
+      console.log(values)
       await AsyncStorage.setItem('@limits', jsonValue);
     } catch (e) {
       // saving error
@@ -139,8 +140,7 @@ export default class Settings extends Component {
         //console.log()
         let data = JSON.parse(value);
         console.log(data.email);
-        let split = data.email.split('@')
-        this.setState({email: split[0]+"..."});
+        this.setState({email: data.email});
        
       } else {
       }
@@ -398,7 +398,7 @@ export default class Settings extends Component {
               onPress={() => this.logout()}
               style={StyleSettings.buttonDialy}>
               <Text style={StyleSettings.textButtonDialy}>
-                Cerrar sesión
+                Cerrar sesion
               </Text>
             </TouchableOpacity>
           </View>

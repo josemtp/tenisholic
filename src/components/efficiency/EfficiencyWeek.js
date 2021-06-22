@@ -69,13 +69,14 @@ LocaleConfig.locales['es'] = {
     'Domingo',
     'Lunes',
     'Martes',
-    'Miercoles',
+    'Miércoles',
     'Jueves',
     'Viernes',
-    'Sabado',
+    'Sábado',
+
   ],
   dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mier', 'Jue', 'Vie', 'Sab'],
-  today: "Hoy'dia",
+  today: "Hoy'día",
 };
 LocaleConfig.defaultLocale = 'es';
 
@@ -342,313 +343,317 @@ export default class EfficiencyWeek extends Component {
     //const d = this.state.days;
 
     return (
-      <SafeAreaView style={StylesEfficiency.container}>
-        <Dialog
-          visible={this.state.showDialog}
-          dialogTitle={<DialogTitle title="Calendario" />}
-          onTouchOutside={() => {
-            this.setState({showDialog: false});
-          }}
-          width={'0.9'}
-          footer={
-            <DialogFooter>
-              <DialogButton
-                text="Cancelar"
-                onPress={() => {
-                  this.setState({showDialog: false});
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff'}}></View>
+        <SafeAreaView style={StylesEfficiency.container}>
+          <Dialog
+            visible={this.state.showDialog}
+            dialogTitle={<DialogTitle title="Elige la semana" />}
+            onTouchOutside={() => {
+              this.setState({showDialog: false});
+            }}
+            width={'0.9'}
+            footer={
+              <DialogFooter>
+                <DialogButton
+                  text="Cancelar"
+                  onPress={() => {
+                    this.setState({showDialog: false});
+                  }}
+                />
+                <DialogButton
+                  text="Aceptar"
+                  onPress={() => {
+                    this.query();
+                  }}
+                />
+              </DialogFooter>
+            }>
+            <DialogContent>
+              <Calendar
+                // Initially visible month. Default = Date()
+                current={Date()}
+                // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+                //minDate={'2012-05-10'}
+                // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+                //maxDate={'2012-05-30'}
+                // Handler which gets executed on day press. Default = undefined
+                markedDates={this.state.rangeDate}
+                onDayPress={(day) => {
+                  console.log('selected day', day);
+
+                  let stringStartDate = day.dateString;
+                  let daytwo = this.getDate(new Date(day.dateString), 2);
+                  let daythree = this.getDate(new Date(day.dateString), 3);
+                  let dayfour = this.getDate(new Date(day.dateString), 4);
+                  let dayfive = this.getDate(new Date(day.dateString), 5);
+                  let daysix = this.getDate(new Date(day.dateString), 6);
+                  let finalDate = this.getDate(new Date(day.dateString), 7);
+                  d = [];
+                  this.fillArray([
+                    stringStartDate,
+                    daytwo,
+                    daythree,
+                    dayfour,
+                    dayfive,
+                    daysix,
+                    finalDate,
+                  ]);
+
+                  const obj = {
+                    [stringStartDate]: {startingDay: true, color: Globals.SALMON},
+                    [daytwo]: {color: Globals.SALMON},
+                    [daythree]: {color: Globals.SALMON},
+                    [dayfour]: {color: Globals.SALMON},
+                    [dayfive]: {color: Globals.SALMON},
+                    [daysix]: {color: Globals.SALMON},
+                    [finalDate]: {endingDay: true, color: Globals.SALMON},
+                  };
+
+                  let split1 = stringStartDate.split('-');
+                  let split2 = finalDate.split('-');
+
+                  let week =
+                    split1[2] +
+                    ' ' +
+                    LocaleConfig.locales['es'].monthNamesShort[
+                      Number(split1[1]) - 1
+                    ].toUpperCase() +
+                    ' - ' +
+                    split2[2] +
+                    ' ' +
+                    LocaleConfig.locales['es'].monthNamesShort[
+                      Number(split2[1]) - 1
+                    ].toUpperCase();
+
+                  this.setState({
+                    rangeDate: obj,
+                    startDate: stringStartDate + ' 00:00:00',
+                    endDate: finalDate + ' 23:59:59',
+                    week,
+                  });
                 }}
-              />
-              <DialogButton
-                text="Aceptar"
-                onPress={() => {
-                  this.query();
+                markingType={'period'}
+                // Handler which gets executed on day long press. Default = undefined
+                onDayLongPress={(day) => {
+                  console.log('selected day', day);
                 }}
+                // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+                monthFormat={'MMMM - yyyy'}
+                // Handler which gets executed when visible month changes in calendar. Default = undefined
+                onMonthChange={(month) => {
+                  console.log('month changed', month);
+                }}
+                // Hide month navigation arrows. Default = false
+                //hideArrows={true}
+                // Replace default arrows with custom ones (direction can be 'left' or 'right')
+                //renderArrow={(direction) => (<Arrow/>)}
+                // Do not show days of other months in month page. Default = false
+                hideExtraDays={true}
+                // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
+                // day from another month that is visible in calendar page. Default = false
+                disableMonthChange={true}
+                // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
+                firstDay={1}
+                // Hide day names. Default = false
+                //hideDayNames={true}
+                // Show week numbers to the left. Default = false
+                showWeekNumbers={true}
+                // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+                onPressArrowLeft={(subtractMonth) => subtractMonth()}
+                // Handler which gets executed when press arrow icon right. It receive a callback can go next month
+                onPressArrowRight={(addMonth) => addMonth()}
+                // Disable left arrow. Default = false
+                //disableArrowLeft={true}
+                // Disable right arrow. Default = false
+                //disableArrowRight={true}
+                // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
+                disableAllTouchEventsForDisabledDays={true}
+                // Replace default month and year title with custom one. the function receive a date as parameter.
+                //renderHeader={(date) => {}}
+                // Enable the option to swipe between months. Default = false
+                enableSwipeMonths={true}
               />
-            </DialogFooter>
-          }>
-          <DialogContent>
-            <Calendar
-              // Initially visible month. Default = Date()
-              current={Date()}
-              // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-              //minDate={'2012-05-10'}
-              // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-              //maxDate={'2012-05-30'}
-              // Handler which gets executed on day press. Default = undefined
-              markedDates={this.state.rangeDate}
-              onDayPress={(day) => {
-                console.log('selected day', day);
-
-                let stringStartDate = day.dateString;
-                let daytwo = this.getDate(new Date(day.dateString), 2);
-                let daythree = this.getDate(new Date(day.dateString), 3);
-                let dayfour = this.getDate(new Date(day.dateString), 4);
-                let dayfive = this.getDate(new Date(day.dateString), 5);
-                let daysix = this.getDate(new Date(day.dateString), 6);
-                let finalDate = this.getDate(new Date(day.dateString), 7);
-                d = [];
-                this.fillArray([
-                  stringStartDate,
-                  daytwo,
-                  daythree,
-                  dayfour,
-                  dayfive,
-                  daysix,
-                  finalDate,
-                ]);
-
-                const obj = {
-                  [stringStartDate]: {startingDay: true, color: Globals.SALMON},
-                  [daytwo]: {color: Globals.SALMON},
-                  [daythree]: {color: Globals.SALMON},
-                  [dayfour]: {color: Globals.SALMON},
-                  [dayfive]: {color: Globals.SALMON},
-                  [daysix]: {color: Globals.SALMON},
-                  [finalDate]: {endingDay: true, color: Globals.SALMON},
-                };
-
-                let split1 = stringStartDate.split('-');
-                let split2 = finalDate.split('-');
-
-                let week =
-                  split1[2] +
-                  ' ' +
-                  LocaleConfig.locales['es'].monthNamesShort[
-                    Number(split1[1]) - 1
-                  ].toUpperCase() +
-                  ' - ' +
-                  split2[2] +
-                  ' ' +
-                  LocaleConfig.locales['es'].monthNamesShort[
-                    Number(split2[1]) - 1
-                  ].toUpperCase();
-
-                this.setState({
-                  rangeDate: obj,
-                  startDate: stringStartDate + ' 00:00:00',
-                  endDate: finalDate + ' 23:59:59',
-                  week,
-                });
-              }}
-              markingType={'period'}
-              // Handler which gets executed on day long press. Default = undefined
-              onDayLongPress={(day) => {
-                console.log('selected day', day);
-              }}
-              // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-              monthFormat={'MMMM - yyyy'}
-              // Handler which gets executed when visible month changes in calendar. Default = undefined
-              onMonthChange={(month) => {
-                console.log('month changed', month);
-              }}
-              // Hide month navigation arrows. Default = false
-              //hideArrows={true}
-              // Replace default arrows with custom ones (direction can be 'left' or 'right')
-              //renderArrow={(direction) => (<Arrow/>)}
-              // Do not show days of other months in month page. Default = false
-              hideExtraDays={true}
-              // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
-              // day from another month that is visible in calendar page. Default = false
-              disableMonthChange={true}
-              // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-              firstDay={1}
-              // Hide day names. Default = false
-              //hideDayNames={true}
-              // Show week numbers to the left. Default = false
-              showWeekNumbers={true}
-              // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-              onPressArrowLeft={(subtractMonth) => subtractMonth()}
-              // Handler which gets executed when press arrow icon right. It receive a callback can go next month
-              onPressArrowRight={(addMonth) => addMonth()}
-              // Disable left arrow. Default = false
-              //disableArrowLeft={true}
-              // Disable right arrow. Default = false
-              //disableArrowRight={true}
-              // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-              disableAllTouchEventsForDisabledDays={true}
-              // Replace default month and year title with custom one. the function receive a date as parameter.
-              //renderHeader={(date) => {}}
-              // Enable the option to swipe between months. Default = false
-              enableSwipeMonths={true}
-            />
-          </DialogContent>
-        </Dialog>
-        <View style={StylesEfficiency.containerUp}>
-          <View style={StylesEfficiency.viewDate}>
-            <View style={StylesEfficiency.viewRowDate}>
-              <Text style={StylesEfficiency.textDate}>{this.state.week}</Text>
-            </View>
-            <View style={StylesEfficiency.viewRowTime}>
-              <Text style={StylesEfficiency.textTime}>Semanal</Text>
-            </View>
-          </View>
-          <View style={StylesEfficiency.viewBatteryImage}>
-            <View style={StylesEfficiency.viewRowSpace}></View>
-            <View style={StylesEfficiency.viewBattery}>
-              <View style={StylesEfficiency.viewPaddingBatery}>
-                <TouchableOpacity
-                  onPress={() => this.setState({showDialog: true})}>
-                  <Icon
-                    name="calendar-day"
-                    size={hp('4%')}
-                    color={Globals.SALMON}
-                    light
-                  />
-                </TouchableOpacity>
+            </DialogContent>
+          </Dialog>
+          <View style={StylesEfficiency.containerUp}>
+            <View style={StylesEfficiency.viewDate}>
+              <View style={StylesEfficiency.viewRowDate}>
+                <Text style={StylesEfficiency.textDate}>{this.state.week}</Text>
+              </View>
+              <View style={StylesEfficiency.viewRowTime}>
+                <Text style={StylesEfficiency.textTime}>Semanal</Text>
               </View>
             </View>
-            <View style={StylesEfficiency.viewImage}>
-              <Image
-                style={StylesEfficiency.imageLogo}
-                source={IMAGES.skodaNegro}></Image>
+            <View style={StylesEfficiency.viewBatteryImage}>
+              <View style={StylesEfficiency.viewRowSpace}></View>
+              <View style={StylesEfficiency.viewBattery}>
+                <View style={StylesEfficiency.viewPaddingBatery}>
+                  <TouchableOpacity
+                    onPress={() => this.setState({showDialog: true})}>
+                    <Icon
+                      name="calendar-day"
+                      size={hp('4%')}
+                      color={Globals.SALMON}
+                      light
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={StylesEfficiency.viewImage}>
+                <Image
+                  style={StylesEfficiency.imageLogo}
+                  source={IMAGES.skodaNegro}></Image>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={StylesEfficiency.containerChart}>
-          <Text style={StylesEfficiency.textSpin}>Spin</Text>
-          <Text style={StylesEfficiency.textAvgSpin}>
-            {this.state.spinTemp} RPM
-          </Text>
-          <BarChart
-            style={{
-              height: hp('10%'),
-              width: wp('83%'),
-              paddingLeft: hp('3.8%'),
-            }}
-            data={dataSpin}
-            svg={{
-              fill: `rgb(${Globals.GREEN_RGB.R}, ${Globals.GREEN_RGB.G}, ${Globals.GREEN_RGB.B})`,
-            }}
-            contentInset={{top: 10, bottom: 20}}
-            animate={true}
-            animationDuration={300}>
-            <Grid />
-          </BarChart>
-          <XAxis
-            style={{
-              height: 1,
-              width: wp('83%'),
-              color: '#ffff',
-              paddingLeft: hp('3.8%'),
-            }}
-            data={d}
-            formatLabel={(value, index) => d[index]}
-            contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
-          />
-        </View>
-        <View style={StylesEfficiency.spacer}></View>
-
-        <View style={StylesEfficiency.containerChart}>
-          <Text style={StylesEfficiency.textStrong}>Fuerza</Text>
-          <Text style={StylesEfficiency.textAvgStrong}>
-            {this.state.fueraTemp} 
-          </Text>
-          <BarChart
-            style={{
-              height: hp('10%'),
-              width: wp('83%'),
-              paddingLeft: hp('3.8%'),
-            }}
-            data={dataFuerza}
-            svg={{
-              fill: `rgb(${Globals.YELLOW_RGB.R}, ${Globals.YELLOW_RGB.G}, ${Globals.YELLOW_RGB.B})`,
-            }}
-            contentInset={{top: 10, bottom: 20}}
-            animate={true}
-            animationDuration={300}>
-            <Grid />
-          </BarChart>
-          <XAxis
-            style={{
-              height: 1,
-              width: wp('83%'),
-              color: '#ffff',
-              paddingLeft: hp('3.8%'),
-            }}
-            data={d}
-            formatLabel={(value, index) => d[index]}
-            contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
-          />
-        </View>
-        <View style={StylesEfficiency.spacer}></View>
-
-        <View style={StylesEfficiency.containerChart}>
-          <Text style={StylesEfficiency.textVelo}>Velocidad</Text>
-          <Text style={StylesEfficiency.textAvgVelo}>
-            {this.state.veloTemp} KM/h
-          </Text>
-          <BarChart
-            style={{
-              height: hp('10%'),
-              width: wp('83%'),
-              paddingLeft: hp('3.8%'),
-            }}
-            data={dataVelo}
-            svg={{
-              fill: `rgb(${Globals.ROSE_RGB.R}, ${Globals.ROSE_RGB.G}, ${Globals.ROSE_RGB.B})`,
-            }}
-            contentInset={{top: 10, bottom: 20}}
-            animate={true}
-            animationDuration={300}>
-            <Grid />
-          </BarChart>
-          <XAxis
-            style={{
-              height: 1,
-              width: wp('83%'),
-              color: '#ffff',
-              paddingLeft: hp('3.8%'),
-            }}
-            data={d}
-            formatLabel={(value, index) => d[index]}
-            contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
-          />
-        </View>
-        <View style={StylesEfficiency.spacer}></View>
-
-        <View style={StylesEfficiency.containerBottom}>
-          <View style={StylesEfficiency.viewBtnBlue}>
-            <TouchableOpacity
-              style={StylesEfficiency.touchBlue}
-              activeOpacity={0.8}
-              onPress={() => ''}
-              disabled={true}>
-              <Icon name="bluetooth-b" size={hp('4%')} color={Globals.SALMON} />
-              <Text style={StylesEfficiency.textBlue}>
-                {this.props.route.params.blue}
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={StylesEfficiency.viewBtnSettings}>
-            <TouchableOpacity
-              style={StylesEfficiency.touchSettings}
-              activeOpacity={0.8}
-              onPress={() => this.props.navigation.navigate('Settings')}>
-              <Icon name="cog" size={hp('4%')} color={Globals.SALMON} />
-              <Text style={StylesEfficiency.textSettings}>Ajustes</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <Snackbar
-          visible={this.state.show}
-          textMessage={
-            <Text style={{fontFamily: 'DINPro-Bold_13934'}}>
-              No existen datos
+          <View style={StylesEfficiency.containerChart}>
+            <Text style={StylesEfficiency.textSpin}>Spin</Text>
+            <Text style={StylesEfficiency.textAvgSpin}>
+              {this.state.spinTemp} RPM
             </Text>
-          }
-          actionHandler={() => {
-            this.setState({show: false});
-          }}
-          actionText="Cerrar"
-          backgroundColor={Globals.SALMON}
-          accentColor={'#FFFF'}
-          messageColor={'#FFFFFF'}
-        />
-      </SafeAreaView>
+            <BarChart
+              style={{
+                height: hp('10%'),
+                width: wp('83%'),
+                paddingLeft: hp('3.8%'),
+              }}
+              data={dataSpin}
+              svg={{
+                fill: `rgb(${Globals.GREEN_RGB.R}, ${Globals.GREEN_RGB.G}, ${Globals.GREEN_RGB.B})`,
+              }}
+              contentInset={{top: 10, bottom: 20}}
+              animate={true}
+              animationDuration={300}>
+              <Grid />
+            </BarChart>
+            <XAxis
+              style={{
+                height: hp('8%'),
+                width: wp('83%'),
+                color: '#ffff',
+                paddingLeft: hp('3.8%'),
+              }}
+              data={d}
+              formatLabel={(value, index) => d[index]}
+              contentInset={{left: 20, right: 20}}
+              svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
+            />
+          </View>
+          <View style={StylesEfficiency.spacer}></View>
+
+          <View style={StylesEfficiency.containerChart}>
+            <Text style={StylesEfficiency.textStrong}>Fuerza</Text>
+            <Text style={StylesEfficiency.textAvgStrong}>
+              {this.state.fueraTemp} 
+            </Text>
+            <BarChart
+              style={{
+                height: hp('10%'),
+                width: wp('83%'),
+                paddingLeft: hp('3.8%'),
+              }}
+              data={dataFuerza}
+              svg={{
+                fill: `rgb(${Globals.YELLOW_RGB.R}, ${Globals.YELLOW_RGB.G}, ${Globals.YELLOW_RGB.B})`,
+              }}
+              contentInset={{top: 10, bottom: 20}}
+              animate={true}
+              animationDuration={300}>
+              <Grid />
+            </BarChart>
+            <XAxis
+              style={{
+                height: hp('8%'),
+                width: wp('83%'),
+                color: '#ffff',
+                paddingLeft: hp('3.8%'),
+              }}
+              data={d}
+              formatLabel={(value, index) => d[index]}
+              contentInset={{left: 20, right: 20}}
+              svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
+            />
+          </View>
+          <View style={StylesEfficiency.spacer}></View>
+
+          <View style={StylesEfficiency.containerChart}>
+            <Text style={StylesEfficiency.textVelo}>Velocidad</Text>
+            <Text style={StylesEfficiency.textAvgVelo}>
+              {this.state.veloTemp} KM/h
+            </Text>
+            <BarChart
+              style={{
+                height: hp('10%'),
+                width: wp('83%'),
+                paddingLeft: hp('3.8%'),
+              }}
+              data={dataVelo}
+              svg={{
+                fill: `rgb(${Globals.ROSE_RGB.R}, ${Globals.ROSE_RGB.G}, ${Globals.ROSE_RGB.B})`,
+              }}
+              contentInset={{top: 10, bottom: 20}}
+              animate={true}
+              animationDuration={300}>
+              <Grid />
+            </BarChart>
+            <XAxis
+              style={{
+                height: hp('8%'),
+                width: wp('83%'),
+                color: '#ffff',
+                paddingLeft: hp('3.8%'),
+              }}
+              data={d}
+              formatLabel={(value, index) => d[index]}
+              contentInset={{left: 20, right: 20}}
+              svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
+            />
+          </View>
+          <View style={StylesEfficiency.spacer}></View>
+
+          <View style={StylesEfficiency.containerBottom}>
+            <View style={StylesEfficiency.viewBtnBlue}>
+              <TouchableOpacity
+                style={StylesEfficiency.touchBlue}
+                activeOpacity={0.8}
+                onPress={() => ''}
+                disabled={true}>
+                <Icon name="bluetooth-b" size={hp('4%')} color={Globals.SALMON} />
+                <Text style={StylesEfficiency.textBlue}>
+                  {this.props.route.params.blue}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={StylesEfficiency.viewBtnSettings}>
+              <TouchableOpacity
+                style={StylesEfficiency.touchSettings}
+                activeOpacity={0.8}
+                onPress={() => this.props.navigation.navigate('Settings')}>
+                <Icon name="cog" size={hp('4%')} color={Globals.SALMON} />
+                <Text style={StylesEfficiency.textSettings}>Ajustes</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <Snackbar
+            visible={this.state.show}
+            textMessage={
+              <Text style={{fontFamily: 'DINPro-Bold'}}>
+                No existen datos
+              </Text>
+            }
+            actionHandler={() => {
+              this.setState({show: false});
+            }}
+            actionText="Cerrar"
+            backgroundColor={Globals.SALMON}
+            accentColor={'#FFFF'}
+            messageColor={'#FFFFFF'}
+          />
+        </SafeAreaView>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff',}}></View>
+      </View>
     );
   }
 }

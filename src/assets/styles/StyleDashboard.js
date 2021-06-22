@@ -11,23 +11,28 @@ export const StyleDashboard = StyleSheet.create({
         width: wp('100%'), //50,
         height: hp('100%'), //50,
         paddingTop: 20,
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+    },
+    container2:{
+        paddingHorizontal: wp('4.5%')
     },
     containerUp:{
         flex: 1/8,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        //paddingHorizontal: wp('4.5%')
     },
     viewDate:{
-        flex: 1/2,
+        flex: 1/1,
         width: '30%',
         flexDirection: 'column'
     },
     viewRowDate:{
-        flex:1/5,
+        flex:1/4,
         width: '100%',
+        //paddingTop:10
     },
     textDate:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')
     },
     viewRowTime:{
@@ -35,8 +40,8 @@ export const StyleDashboard = StyleSheet.create({
         width: '100%',
     },
     textTime:{
-        fontFamily: 'DINPro-Bold_13934',
-        fontSize: hp('6.5%')  
+        fontFamily: 'DINPro-Bold',
+        fontSize: hp('5.5%')  
     },
     viewBatteryImage:{
         flex: 1/2,
@@ -63,7 +68,7 @@ export const StyleDashboard = StyleSheet.create({
         paddingLeft:hp('0.3%')
     },
     textBattery:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')
     },
     viewImage:{
@@ -91,7 +96,7 @@ export const StyleDashboard = StyleSheet.create({
         paddingHorizontal: wp('5%'),
     },
     textCounter:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('5%'),
         color: '#ffff'
     },
@@ -111,7 +116,7 @@ export const StyleDashboard = StyleSheet.create({
         backgroundColor: Globals.GREEN 
     },
     textPlay:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')  
     },
     spacer:{
@@ -121,6 +126,7 @@ export const StyleDashboard = StyleSheet.create({
     containerActivity:{
         flex: 1/10,
         flexDirection: 'row',
+        //paddingLeft:wp('4.5%')
     },
     viewActivity:{
         flex: 1/1.10,
@@ -128,8 +134,8 @@ export const StyleDashboard = StyleSheet.create({
         justifyContent: 'center',
     },
     textActivity:{
-        fontFamily: 'DINPro-Bold_13934',
-        fontSize: hp('6%')  
+        fontFamily: 'DINPro-Bold',
+        fontSize: hp('5.7%')  
     },
     viewResume:{
         paddingTop: hp('1%'),
@@ -138,8 +144,8 @@ export const StyleDashboard = StyleSheet.create({
         alignItems: 'flex-end',
     },
     textResume:{
-        fontFamily: 'DINPro-Bold_13934',
-        fontSize: hp('2.5%')  
+        fontFamily: 'DINPro-Bold',
+        fontSize: hp('2.2%')  
     },
     spacer2:{
         flex: 1/10000,
@@ -150,6 +156,7 @@ export const StyleDashboard = StyleSheet.create({
         backgroundColor: Globals.SALMON,
         flexDirection: 'row',
         borderRadius: wp('10%'),
+        //width:wp('95%')
     },
     viewStrong:{
         flex:1/2,
@@ -164,7 +171,7 @@ export const StyleDashboard = StyleSheet.create({
     },
     textStrog:{
         fontSize: hp('3.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#ffff'
     },
     viewStrongSpin:{
@@ -191,11 +198,11 @@ export const StyleDashboard = StyleSheet.create({
         backgroundColor: Globals.GREEN 
     },
     textBeat:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('3%')  
     },
     textNumberBeat:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')  
     },
     viewSpinVelo:{
@@ -207,7 +214,7 @@ export const StyleDashboard = StyleSheet.create({
     },
     textSpin:{
         fontSize: hp('3.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#ffff'
     },
     viewSpinRow:{
@@ -218,11 +225,11 @@ export const StyleDashboard = StyleSheet.create({
     },
     textPercentageSpin:{
         fontSize: hp('5.8%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     textRPM:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     viewVeloRow:{
         flex: 1/2,
@@ -233,7 +240,7 @@ export const StyleDashboard = StyleSheet.create({
     },
     textVelo:{
         fontSize: hp('3.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#ffff'
     },
     viewVeloRow:{
@@ -244,15 +251,16 @@ export const StyleDashboard = StyleSheet.create({
     },
     textPercentageVelo:{
         fontSize: hp('5.8s%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     textKmH:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     containerBottom:{
         flex: 1/10,
         flexDirection: 'row'
+        
     },
     touchBlue:{
         justifyContent: 'center',
@@ -266,7 +274,7 @@ export const StyleDashboard = StyleSheet.create({
     },
     textBlue:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     touchSettings:{
         justifyContent: 'center',
@@ -280,7 +288,7 @@ export const StyleDashboard = StyleSheet.create({
     },
     textSettings:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     buttonDialy:{
         //elevation: 8,
@@ -291,13 +299,13 @@ export const StyleDashboard = StyleSheet.create({
     },
     textButtonDialy:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934'
+        fontFamily: 'DINPro-Bold'
     },
     separator:{
         paddingBottom: 20
     },
     timer: {
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('5.1%'),
         color: '#ffff',
     }

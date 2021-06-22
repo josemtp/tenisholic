@@ -29,6 +29,7 @@ function App() {
           component={SplashScreen}
           options={{
             headerShown: false,
+            gestureEnabled: false
           }}
         />
         <Stack.Screen
@@ -36,6 +37,7 @@ function App() {
           component={Login}
           options={{
             headerShown: false,
+            gestureEnabled: false
           }}
         />
         <Stack.Screen
@@ -43,6 +45,7 @@ function App() {
           component={Dashboard}
           options={{
             headerShown: false,
+            gestureEnabled: false
           }}
         />
         <Stack.Screen
@@ -50,6 +53,7 @@ function App() {
           component={Settings}
           options={{
             headerShown: false,
+            
           }}
         />
         <Stack.Screen
@@ -57,6 +61,7 @@ function App() {
           component={EfficiencyDialy}
           options={{
             headerShown: false,
+            
           }}
         />
         <Stack.Screen
@@ -64,6 +69,7 @@ function App() {
           component={EfficiencyWeek}
           options={{
             headerShown: false,
+            
           }}
         />
         <Stack.Screen
@@ -71,6 +77,7 @@ function App() {
           component={EfficiencyMonth}
           options={{
             headerShown: false,
+        
           }}
         />
       </Stack.Navigator>

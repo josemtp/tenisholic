@@ -163,7 +163,7 @@ export default class Login extends Component {
       }else{
         this.setState({
           show: true,
-          message: 'Ocurrió un error, intenta de nuevo',
+          message: 'Ocurrio un error, intenta de nuevo',
           showDialog: false
         })
       }
@@ -180,8 +180,6 @@ export default class Login extends Component {
   componentDidMount(){
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
     BackHandler.addEventListener('hardwareBackPress', () => {
-
-
       return true;
     })
     this.setState({showDialog: true})
@@ -191,6 +189,7 @@ export default class Login extends Component {
   render() {
     return (
       <SafeAreaView style={StylesLogin.container}>
+        
         <Dialog
           visible={this.state.showDialog}
           dialogTitle={<DialogTitle title="Cargando..." />}
@@ -209,7 +208,7 @@ export default class Login extends Component {
             </View>
           </DialogContent>
         </Dialog>
-
+        <View style={StylesLogin.container2}>
         <View style={StylesLogin.viewImage}>
           <Image 
             style={StylesLogin.image}
@@ -246,11 +245,11 @@ export default class Login extends Component {
               <Text style={StylesLogin.textButton}>Ingresar</Text>
           </TouchableOpacity>
         </View>
-        
+        </View>
         <Snackbar
           visible={this.state.show}
           textMessage={(
-            <Text style={{ fontFamily: 'DINPro-Bold_13934' }}>
+            <Text style={{ fontFamily: 'DINPro-Bold' }}>
               {this.state.message}
             </Text>
           )}

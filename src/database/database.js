@@ -13,7 +13,7 @@ function setCurrentDate(){
 
   let _return = `${year}-${_month}-${_day} ${hours}:${_min}:${sec}`
 
-  //let _return = `${year}-${_month}-21 13:${_min}:${sec}`
+  //let _return = `${year}-${_month}-06 13:${_min}:${sec}`
 
   return _return.toString()
 }

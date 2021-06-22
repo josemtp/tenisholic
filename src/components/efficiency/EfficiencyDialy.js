@@ -283,10 +283,12 @@ export default class EfficiencyDialy extends Component {
     const dataVelo = this.state.velo;
 
     return (
-      <SafeAreaView style={StylesEfficiency.container}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff'}}></View>
+        <SafeAreaView style={StylesEfficiency.container}>
         <Dialog
           visible={this.state.showDialog}
-          dialogTitle={<DialogTitle title="Calendario" />}
+          dialogTitle={<DialogTitle title="Elige el día" />}
           onTouchOutside={() => {
             this.setState({showDialog: false});
           }}
@@ -437,7 +439,7 @@ export default class EfficiencyDialy extends Component {
           </BarChart>
           <XAxis
             style={{
-              height: 1,
+              height: hp('8%'),
               width: wp('83%'),
               color: '#ffff',
               paddingLeft: hp('3.8%'),
@@ -445,7 +447,7 @@ export default class EfficiencyDialy extends Component {
             data={d}
             formatLabel={(value, index) => d[index]}
             contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
+            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
           />
         </View>
         <View style={StylesEfficiency.spacer}></View>
@@ -470,7 +472,7 @@ export default class EfficiencyDialy extends Component {
           </BarChart>
           <XAxis
             style={{
-              height: 1,
+              height: hp('8%'),
               width: wp('83%'),
               color: '#ffff',
               paddingLeft: hp('3.8%'),
@@ -478,7 +480,7 @@ export default class EfficiencyDialy extends Component {
             data={d}
             formatLabel={(value, index) => d[index]}
             contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
+            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
           />
         </View>
         <View style={StylesEfficiency.spacer}></View>
@@ -503,7 +505,7 @@ export default class EfficiencyDialy extends Component {
           </BarChart>
           <XAxis
             style={{
-              height: 1,
+              height: hp('8%'),
               width: wp('83%'),
               color: '#ffff',
               paddingLeft: hp('3.8%'),
@@ -511,7 +513,7 @@ export default class EfficiencyDialy extends Component {
             data={d}
             formatLabel={(value, index) => d[index]}
             contentInset={{left: 20, right: 20}}
-            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold_13934'}}
+            svg={{fontSize: 10, fill: 'white', fontFamily: 'DINPro-Bold'}}
           />
         </View>
         <View style={StylesEfficiency.spacer}></View>
@@ -540,7 +542,7 @@ export default class EfficiencyDialy extends Component {
         <Snackbar
           visible={this.state.show}
           textMessage={
-            <Text style={{ fontFamily: 'DINPro-Bold_13934' }}>
+            <Text style={{ fontFamily: 'DINPro-Bold' }}>
               No existen datos
             </Text>
           }
@@ -553,6 +555,8 @@ export default class EfficiencyDialy extends Component {
           messageColor={'#FFFFFF'}
         />
       </SafeAreaView>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff',}}></View>
+      </View>
     );
   }
 }

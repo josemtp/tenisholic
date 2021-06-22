@@ -18,7 +18,7 @@ export const StyleSettings = StyleSheet.create({
         backgroundColor: Globals.SALMON
     },
     textAjustes:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#ffff',
         fontSize: hp('5%'),  
     },
@@ -27,7 +27,7 @@ export const StyleSettings = StyleSheet.create({
         paddingHorizontal:wp('5%'),
     },
     textAjustes2:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2.3%'),  
         paddingTop: hp('3.8%')
     },
@@ -62,11 +62,11 @@ export const StyleSettings = StyleSheet.create({
         alignItems: 'flex-end',
     },
     genericText:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2.5%'),  
     },
     genericText2:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2.5%'),  
         color: '#C4C4C4'
     },
@@ -87,6 +87,6 @@ export const StyleSettings = StyleSheet.create({
     },
     textButtonDialy:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934'
+        fontFamily: 'DINPro-Bold'
     },
 })

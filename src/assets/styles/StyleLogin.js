@@ -12,9 +12,12 @@ export const StylesLogin = StyleSheet.create({
         paddingLeft: 40,
         paddingRight: 40
     },
+    container2:{
+        paddingHorizontal: wp('4.5%')
+    },
     labelUser:{
         paddingBottom: 5,
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: 25,
         color:"#fff"
     },
@@ -24,7 +27,7 @@ export const StylesLogin = StyleSheet.create({
         borderWidth: 3,
         backgroundColor: Globals.WHITE,
         borderRadius: 30,
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#000',
         paddingStart: 23,
         fontSize: hp('2.3%')
@@ -35,7 +38,7 @@ export const StylesLogin = StyleSheet.create({
         borderWidth: 3,
         backgroundColor: Globals.WHITE,
         borderRadius: 30,
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         color: '#000',
         paddingStart: 23,
         fontSize: hp('2.3%')
@@ -57,7 +60,7 @@ export const StylesLogin = StyleSheet.create({
     },
     textButton:{
         fontSize: hp('2.3%'),
-        fontFamily: 'DINPro-Bold_13934'
+        fontFamily: 'DINPro-Bold'
     },
     viewImage:{
         alignItems: 'center',

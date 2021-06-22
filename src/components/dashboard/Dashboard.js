@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -12,16 +12,16 @@ import {
   Button,
   BackHandler,
 } from 'react-native';
-import {StyleDashboard} from '../../assets/styles/StyleDashboard';
-import {IMAGES} from '../../assets/images/index';
+import { StyleDashboard } from '../../assets/styles/StyleDashboard';
+import { IMAGES } from '../../assets/images/index';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {Globals} from '../../globals/Globals';
-import {BleManager} from 'react-native-ble-plx';
+import { Globals } from '../../globals/Globals';
+import { BleManager } from 'react-native-ble-plx';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {AnimatedCircularProgress} from 'react-native-circular-progress';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Snackbar from 'react-native-snackbar-component';
 import base64 from 'react-native-base64';
 import Dialog, {
@@ -30,21 +30,22 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from 'react-native-popup-dialog';
-import {Stopwatch} from 'react-native-stopwatch-timer';
-import {openDatabase} from 'react-native-sqlite-storage';
-import {Database} from '../../database/Database';
+import { Stopwatch } from 'react-native-stopwatch-timer';
+import { openDatabase } from 'react-native-sqlite-storage';
+import { Database } from '../../database/Database';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StylesLogin } from '../../assets/styles/StyleLogin';
 
-const db = openDatabase({name: 'SQLite.db'});
+const db = openDatabase({ name: 'SQLite.db' });
 
 const manager = new BleManager();
 var builder = '';
 var counter = 0;
 var _contador = 0;
 let _mili = '';
-let percentSpin= 0;
-let percentFuerza= 0;
-let percentVelocidad= 0;
+let percentSpin = 0;
+let percentFuerza = 0;
+let percentVelocidad = 0;
 
 const monthNamesShort = [
   'Ene.',
@@ -118,7 +119,7 @@ export default class Dashboard extends Component {
       'Sábado',
     ];
     var d = new Date(_return);
-    var dayName = days[d.getDay()+1];
+    var dayName = days[d.getDay() + 1];
 
     let DAY =
       dayName.toUpperCase() +
@@ -127,13 +128,13 @@ export default class Dashboard extends Component {
       ' ' +
       monthNamesShort[Number(_month) - 1].toUpperCase();
 
-    this.setState({day: DAY});
+    this.setState({ day: DAY });
   }
 
-  getSetting(){
+  getSetting() {
     setTimeout(() => {
       this.getData()
-    },500)
+    }, 500)
   }
 
   getData = async () => {
@@ -150,25 +151,25 @@ export default class Dashboard extends Component {
             this.setState({
               showDialog: false,
             });
-            percentSpin= json.spin
-            percentFuerza= json.fuerza,
-            percentVelocidad= json.velo
+            percentSpin = json.spin
+            percentFuerza = json.fuerza,
+              percentVelocidad = json.velo
 
             console.log('aqui1 ', percentSpin)
             console.log('aqui2 ', percentFuerza)
             console.log('aqui3 ', percentVelocidad)
           } else {
-            this.setState({showDialog: false});
+            this.setState({ showDialog: false });
           }
         } else {
-          this.setState({showDialog: false});
+          this.setState({ showDialog: false });
         }
       } else {
-        this.setState({showDialog: false});
+        this.setState({ showDialog: false });
       }
     } catch (e) {
       // error reading value
-      this.setState({showDialog: false});
+      this.setState({ showDialog: false });
     }
   };
 
@@ -208,7 +209,7 @@ export default class Dashboard extends Component {
 
   closeMessage() {
     setTimeout(() => {
-      this.setState((_show) => ({show: !_show}));
+      this.setState((_show) => ({ show: !_show }));
     }, 4500);
   }
 
@@ -248,7 +249,7 @@ export default class Dashboard extends Component {
         if (name.includes('S-KODA2_V0')) {
           manager.stopDeviceScan();
           console.log(device.name);
-          this.setState({UUID: device.id});
+          this.setState({ UUID: device.id });
 
           device
             .connect()
@@ -256,12 +257,12 @@ export default class Dashboard extends Component {
               //alert('Discovering services and characteristics');
               this.setState({
                 show: true,
-                message: 'El dispositivo se conecto correctamente',
+                message: 'El dispositivo se conectó correctamente',
                 disabledBtn: false,
                 textBlue: 'Conectado',
               });
               setTimeout(() => {
-                this.setState({activeBtn: false});
+                this.setState({ activeBtn: false });
               }, 2000);
               return device.discoverAllServicesAndCharacteristics();
             })
@@ -269,11 +270,11 @@ export default class Dashboard extends Component {
               this.setupNotifications(device);
             })
             .catch((error) => {
-              this.setState({activeBtn: true});
+              this.setState({ activeBtn: true });
               console.log(JSON.stringify(error));
               this.setState({
                 show: true,
-                message: '¡Revisa si el bluetooth y el GPS estén encendidos!',
+                message: '¡Revisa si el bluetooth y el GPS esten encendidos!',
                 disabledBtn: false,
                 textBlue: 'Conectar',
                 activeBtn: true,
@@ -310,7 +311,7 @@ export default class Dashboard extends Component {
       case 1:
         //spin
         console.log(percentSpin);
-        if(value >= percentSpin){
+        if (value >= percentSpin) {
           this.setState({
             show: true,
             message: '¡Superaste el nivel de spin!',
@@ -325,7 +326,7 @@ export default class Dashboard extends Component {
       case 2:
         //fuerza
         console.log(percentFuerza);
-        if(value >= percentFuerza){
+        if (value >= percentFuerza) {
           this.setState({
             show: true,
             message: '¡Superaste el nivel de fuerza!',
@@ -339,7 +340,7 @@ export default class Dashboard extends Component {
       case 3:
         //velocidad
         console.log(percentVelocidad);
-        if(value >= percentVelocidad){
+        if (value >= percentVelocidad) {
           this.setState({
             show: true,
             message: '¡Superaste el nivel de velocidad!',
@@ -551,7 +552,7 @@ export default class Dashboard extends Component {
                     golpes = 'Golpes';
                   }
                   this.setState({
-                    contador:_contador,
+                    contador: _contador,
                     textoGolpes: golpes,
                     getLap: true,
                   });
@@ -567,7 +568,7 @@ export default class Dashboard extends Component {
               }
             }
           }
-        } catch (error) {}
+        } catch (error) { }
       },
     );
   }
@@ -575,21 +576,21 @@ export default class Dashboard extends Component {
   sendData() {
     this.getData();
 
-    if(percentSpin == 0){
+    if (percentSpin == 0) {
       this.setState({
         show: true,
         message: '¡Configura el tope de spin, en objetivos personales en Ajustes!',
       });
       this.closeMessage();
       return
-    }else if(percentFuerza == 0){
+    } else if (percentFuerza == 0) {
       this.setState({
         show: true,
         message: '¡Configura el tope de fuerza, en objetivos personales en Ajustes!',
       });
       this.closeMessage();
       return
-    }else if(percentVelocidad == 0){
+    } else if (percentVelocidad == 0) {
       this.setState({
         show: true,
         message: '¡Configura el tope de velocidad, en objetivos personales en Ajustes!',
@@ -601,7 +602,7 @@ export default class Dashboard extends Component {
     console.log(this.state.UUID);
     console.log(this.state.service);
     console.log(this.state.chara);
-    
+
     manager
       .writeCharacteristicWithoutResponseForDevice(
         this.state.UUID,
@@ -623,13 +624,13 @@ export default class Dashboard extends Component {
             setTimer: false,
             contador: 0,
           });
-        }else{
+        } else {
           console.log('entro ', _mili);
           this.setState({
             show: true,
             message: '¡Puedes ir a resumen para verificar tus juegos!',
             setTimer: true,
-            time:_mili
+            time: _mili
           })
           _mili = 0
           this.closeMessage()
@@ -638,13 +639,13 @@ export default class Dashboard extends Component {
           textoJugar: this.state.textoJugar == 'Jugar' ? 'Fin' : 'Jugar',
           activeTimer: this.state.activeTimer == false ? true : false,
           timeEnd: this.state.textoJugar == 'Jugar' ? 0 : this.state.timeEnd,
-          
+
         });
       });
   }
 
   navigate(navigate) {
-    this.setState({showDialog: false});
+    this.setState({ showDialog: false });
     this.props.navigation.navigate(navigate, {
       blue: this.state.textBlue,
     });
@@ -653,281 +654,293 @@ export default class Dashboard extends Component {
   render() {
     //console.log(_mili, " render")
     return (
-      <SafeAreaView style={StyleDashboard.container}>
-        <Dialog
-          visible={this.state.showDialog}
-          dialogTitle={<DialogTitle title="Rendimiento..." />}
-          onTouchOutside={() => {
-            this.setState({showDialog: false});
-          }}>
-          <DialogContent>
-            <View style={StyleDashboard.separator}></View>
-            <View style={StyleDashboard.separator}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => this.navigate('EfficiencyDialy')}
-                style={StyleDashboard.buttonDialy}>
-                <Text style={StyleDashboard.textButtonDialy}>
-                  Redimiento Diario
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff'}}></View>
+        <SafeAreaView style={StyleDashboard.container}>
+          <Dialog
+            visible={this.state.showDialog}
+            dialogTitle={<DialogTitle title="Rendimiento..." />}
+            onTouchOutside={() => {
+              this.setState({ showDialog: false });
+            }}>
+            <DialogContent>
+              <View style={StyleDashboard.separator}></View>
+              <View style={StyleDashboard.separator}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => this.navigate('EfficiencyDialy')}
+                  style={StyleDashboard.buttonDialy}>
+                  <Text style={StyleDashboard.textButtonDialy}>
+                    Rendimiento Diario
                 </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={StyleDashboard.separator}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => this.navigate('EfficiencyWeek')}
-                style={StyleDashboard.buttonDialy}>
-                <Text style={StyleDashboard.textButtonDialy}>
-                  Redimiento Semanal
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <View style={StyleDashboard.separator}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => this.navigate('EfficiencyMonth')}
-                style={StyleDashboard.buttonDialy}>
-                <Text style={StyleDashboard.textButtonDialy}>
-                  Redimiento Mensual
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </DialogContent>
-        </Dialog>
-
-        <View style={StyleDashboard.containerUp}>
-          <View style={StyleDashboard.viewDate}>
-            <View style={StyleDashboard.viewRowDate}>
-              <Text style={StyleDashboard.textDate}>{this.state.day}</Text>
-            </View>
-            <View style={StyleDashboard.viewRowTime}>
-              <Text style={StyleDashboard.textTime}>Tiempo</Text>
-            </View>
-          </View>
-          <View style={StyleDashboard.viewBatteryImage}>
-            <View style={StyleDashboard.viewRowSpace}></View>
-            <View style={StyleDashboard.viewBattery}>
-              <View style={StyleDashboard.viewPaddingBatery}>
-                <Icon name={'battery'} size={hp('2%')} />
+                </TouchableOpacity>
               </View>
-              <Text style={StyleDashboard.textBattery}>
-                {this.state.bateria}
-              </Text>
+              <View style={StyleDashboard.separator}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => this.navigate('EfficiencyWeek')}
+                  style={StyleDashboard.buttonDialy}>
+                  <Text style={StyleDashboard.textButtonDialy}>
+                    Rendimiento Semanal
+                </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={StyleDashboard.separator}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => this.navigate('EfficiencyMonth')}
+                  style={StyleDashboard.buttonDialy}>
+                  <Text style={StyleDashboard.textButtonDialy}>
+                    Rendimiento Mensual
+                </Text>
+                </TouchableOpacity>
+              </View>
+            </DialogContent>
+          </Dialog>
+
+          <View style={StyleDashboard.containerUp}>
+            <View style={StyleDashboard.viewDate}>
+              <View style={StyleDashboard.viewRowDate}>
+                <Text style={StyleDashboard.textDate}>{this.state.day}</Text>
+              </View>
+              <View style={StyleDashboard.viewRowTime}>
+                <Text style={StyleDashboard.textTime}>Tiempo</Text>
+              </View>
             </View>
-            <View style={StyleDashboard.viewImage}>
-              <Image
-                style={StyleDashboard.imageLogo}
-                source={IMAGES.skodaNegro}></Image>
+            <View style={StyleDashboard.viewBatteryImage}>
+              <View style={StyleDashboard.viewRowSpace}></View>
+              <View style={StyleDashboard.viewBattery}>
+                <View style={StyleDashboard.viewPaddingBatery}>
+                  <Icon name={'battery'} size={hp('2%')} />
+                </View>
+                <Text style={StyleDashboard.textBattery}>
+                  {this.state.bateria}
+                </Text>
+              </View>
+              <View style={StyleDashboard.viewImage}>
+                <Image
+                  style={StyleDashboard.imageLogo}
+                  source={IMAGES.skodaNegro}></Image>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={StyleDashboard.containerCounter}>
-          <View style={StyleDashboard.viewCounter}>
-            {this.state.setTimer ? (
-              <Text style={StyleDashboard.timer}>
-                {this.state.time}
-              </Text>
+
+          <View style={StyleDashboard.containerCounter}>
+            <View style={StyleDashboard.viewCounter}>
+              {this.state.setTimer ? (
+                <Text style={StyleDashboard.timer}>
+                  {this.state.time}
+                </Text>
               ) : (
                 <Stopwatch
-                msecs
-                start={this.state.activeTimer}
-                // To start
-                reset={!this.state.activeTimer}
-                // To reset
-                options={options}
-                // Options for the styling
-                //startTime={this.state.timeEnd}
-                getTime={(time) => {
-                  if (time != '') {
-                    _mili = time.toString();
-                  }
+                  msecs
+                  start={this.state.activeTimer}
+                  // To start
+                  reset={!this.state.activeTimer}
+                  // To reset
+                  options={options}
+                  // Options for the styling
+                  //startTime={this.state.timeEnd}
+                  getTime={(time) => {
+                    if (time != '') {
+                      _mili = time.toString();
+                    }
 
-                  if (this.state.getLap) {
-                    this.setState({
-                      timer: time.toString(),
-                      getLap: false,
-                    });
-                  }
+                    if (this.state.getLap) {
+                      this.setState({
+                        timer: time.toString(),
+                        getLap: false,
+                      });
+                    }
 
-                  if (this.state.setTimer) {
-                    console.log(_mili, ' mili');
-                    this.setState({
-                      setTimer: false,
-                    });
-                    //console.log(mili);
-                  }
-                }}
-              />
-            )}
-          </View>
-          <View style={StyleDashboard.viewPlay}>
-            <TouchableOpacity
-              style={StyleDashboard.play}
-              activeOpacity={0.8}
-              onPress={() => this.sendData()}
-              disabled={this.state.activeBtn}
-              >
-              <Text style={StyleDashboard.textPlay}>
-                {this.state.textoJugar}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={StyleDashboard.spacer}></View>
-        <View style={StyleDashboard.containerActivity}>
-          <View style={StyleDashboard.viewActivity}>
-            <Text style={StyleDashboard.textActivity}>Actividad</Text>
-          </View>
-          <View style={StyleDashboard.viewResume}>
-            <TouchableOpacity
-              style={{}}
-              activeOpacity={0.8}
-              onPress={() => this.setState({showDialog: true})}>
-              <Text style={StyleDashboard.textResume}>Ver resumen</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={StyleDashboard.spacer2}></View>
-        <View style={StyleDashboard.containerResume}>
-          <View style={StyleDashboard.viewStrong}>
-            <View style={StyleDashboard.viewSpaceStrong}></View>
-            <View style={StyleDashboard.viewStrongSpin}>
-              <Text style={StyleDashboard.textStrog}>Fuerza</Text>
-              <AnimatedCircularProgress
-                size={hp('19%')}
-                width={hp('3%')}
-                fill={this.state.circleFuerza}
-                tintColor={Globals.GREEN}
-                backgroundColor={Globals.SHADOW}
-                rotation={360}
-                style={{backgroundColor: '#ffff', borderRadius: hp('19%')}}>
-                {() => (
-                  <View
-                    style={{
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: '#ffff',
-                    }}>
-                    <Text style={StyleDashboard.textPercentageSpin}>
-                      {this.state.fuerza}
-                    </Text>
-                  </View>
-                )}
-              </AnimatedCircularProgress>
+                    if (this.state.setTimer) {
+                      console.log(_mili, ' mili');
+                      this.setState({
+                        setTimer: false,
+                      });
+                      //console.log(mili);
+                    }
+                  }}
+                />
+              )}
             </View>
-            <View style={StyleDashboard.viewBeat}>
-              <TouchableOpacity style={StyleDashboard.beat} activeOpacity={0.8}>
-                <Text style={StyleDashboard.textBeat}>
-                  {this.state.contador}
-                </Text>
-                <Text style={StyleDashboard.textNumberBeat}>
-                  {this.state.textoGolpes}
+            <View style={StyleDashboard.viewPlay}>
+              <TouchableOpacity
+                style={StyleDashboard.play}
+                activeOpacity={0.8}
+                onPress={() => this.sendData()}
+                disabled={this.state.activeBtn}
+              >
+                <Text style={StyleDashboard.textPlay}>
+                  {this.state.textoJugar}
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={StyleDashboard.viewSpinVelo}>
-            <View style={StyleDashboard.viewSpinRow}>
-              <Text style={StyleDashboard.textSpin}>Spin</Text>
-              <AnimatedCircularProgress
-                size={hp('19%')}
-                width={hp('3%')}
-                fill={this.state.circleSpin}
-                tintColor={Globals.GREEN}
-                backgroundColor={Globals.SHADOW}
-                rotation={360}
-                style={{backgroundColor: '#ffff', borderRadius: hp('19%')}}>
-                {() => (
-                  <View
-                    style={{
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: '#ffff',
-                    }}>
-                    <Text style={StyleDashboard.textPercentageSpin}>
-                      {this.state.spin}
-                    </Text>
-                    <Text style={StyleDashboard.textRPM}>RPM</Text>
-                  </View>
-                )}
-              </AnimatedCircularProgress>
+
+          <View style={StyleDashboard.spacer}></View>
+
+          <View style={StyleDashboard.containerActivity}>
+            <View style={StyleDashboard.viewActivity}>
+              <Text style={StyleDashboard.textActivity}>Actividad</Text>
             </View>
-            <View style={StyleDashboard.viewVeloRow}>
-              <AnimatedCircularProgress
-                size={hp('19%')}
-                width={hp('3%')}
-                fill={this.state.circleVelocidad}
-                tintColor={Globals.GREEN}
-                backgroundColor={Globals.SHADOW}
-                rotation={360}
-                style={{backgroundColor: '#ffff', borderRadius: hp('19%')}}>
-                {() => (
-                  <View
-                    style={{
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      backgroundColor: '#ffff',
-                    }}>
-                    <Text style={StyleDashboard.textPercentageVelo}>
-                      {this.state.velocidad}
-                    </Text>
-                    <Text style={StyleDashboard.textKmH}>KM/h</Text>
-                  </View>
-                )}
-              </AnimatedCircularProgress>
-              <Text style={StyleDashboard.textSpin}>Velocidad</Text>
+            <View style={StyleDashboard.viewResume}>
+              <TouchableOpacity
+                style={{}}
+                activeOpacity={0.8}
+                onPress={() => this.setState({ showDialog: true })}>
+                <Text style={StyleDashboard.textResume}>Ver resumen</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </View>
-        <View style={StyleDashboard.containerBottom}>
-          <View style={StyleDashboard.viewBtnBlue}>
-            <TouchableOpacity
-              style={StyleDashboard.touchBlue}
-              activeOpacity={0.8}
-              onPress={() => this.scann()}
-              disabled={this.state.disabledBtn}>
-              <Icon name="bluetooth-b" size={hp('4%')} color={Globals.SALMON} />
-              <Text style={StyleDashboard.textBlue}>{this.state.textBlue}</Text>
-            </TouchableOpacity>
+          <View style={StyleDashboard.spacer2}></View>
+
+          <View style={StyleDashboard.containerResume}>
+        
+            <View style={StyleDashboard.viewStrong}>
+              <View style={StyleDashboard.viewSpaceStrong}></View>
+              <View style={StyleDashboard.viewStrongSpin}>
+                <Text style={StyleDashboard.textStrog}>Fuerza</Text>
+                <AnimatedCircularProgress
+                  size={hp('19%')}
+                  width={hp('3%')}
+                  fill={this.state.circleFuerza}
+                  tintColor={Globals.GREEN}
+                  backgroundColor={Globals.SHADOW}
+                  rotation={360}
+                  style={{ backgroundColor: '#ffff', borderRadius: hp('19%') }}>
+                  {() => (
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#ffff',
+                      }}>
+                      <Text style={StyleDashboard.textPercentageSpin}>
+                        {this.state.fuerza}
+                      </Text>
+                    </View>
+                  )}
+                </AnimatedCircularProgress>
+              </View>
+              <View style={StyleDashboard.viewBeat}>
+                <TouchableOpacity style={StyleDashboard.beat} activeOpacity={0.8}>
+                  <Text style={StyleDashboard.textBeat}>
+                    {this.state.contador}
+                  </Text>
+                  <Text style={StyleDashboard.textNumberBeat}>
+                    {this.state.textoGolpes}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={StyleDashboard.viewSpinVelo}>
+              <View style={StyleDashboard.viewSpinRow}>
+                <Text style={StyleDashboard.textSpin}>Spin</Text>
+                <AnimatedCircularProgress
+                  size={hp('19%')}
+                  width={hp('3%')}
+                  fill={this.state.circleSpin}
+                  tintColor={Globals.GREEN}
+                  backgroundColor={Globals.SHADOW}
+                  rotation={360}
+                  style={{ backgroundColor: '#ffff', borderRadius: hp('19%') }}>
+                  {() => (
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#ffff',
+                      }}>
+                      <Text style={StyleDashboard.textPercentageSpin}>
+                        {this.state.spin}
+                      </Text>
+                      <Text style={StyleDashboard.textRPM}>RPM</Text>
+                    </View>
+                  )}
+                </AnimatedCircularProgress>
+              </View>
+              <View style={StyleDashboard.viewVeloRow}>
+                <AnimatedCircularProgress
+                  size={hp('19%')}
+                  width={hp('3%')}
+                  fill={this.state.circleVelocidad}
+                  tintColor={Globals.GREEN}
+                  backgroundColor={Globals.SHADOW}
+                  rotation={360}
+                  style={{ backgroundColor: '#ffff', borderRadius: hp('19%') }}>
+                  {() => (
+                    <View
+                      style={{
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: '#ffff',
+                      }}>
+                      <Text style={StyleDashboard.textPercentageVelo}>
+                        {this.state.velocidad}
+                      </Text>
+                      <Text style={StyleDashboard.textKmH}>KM/h</Text>
+                    </View>
+                  )}
+                </AnimatedCircularProgress>
+                <Text style={StyleDashboard.textSpin}>Velocidad</Text>
+              </View>
+            </View>
           </View>
-          <View style={StyleDashboard.viewBtnSettings}>
-            <TouchableOpacity
-              style={StyleDashboard.touchSettings}
-              activeOpacity={0.8}
-              onPress={() => this.props.navigation.navigate('Settings')}
-              disabled={this.state.disabledBtn}>
-              <Icon name="cog" size={hp('4%')} color={Globals.SALMON} />
-              <Text style={StyleDashboard.textSettings}>Ajustes</Text>
-            </TouchableOpacity>
+
+          <View style={StyleDashboard.containerBottom}>
+
+            <View style={StyleDashboard.viewBtnBlue}>
+              <TouchableOpacity
+                style={StyleDashboard.touchBlue}
+                activeOpacity={0.8}
+                onPress={() => this.scann()}
+                disabled={this.state.disabledBtn}>
+                <Icon name="bluetooth-b" size={hp('4%')} color={Globals.SALMON} />
+                <Text style={StyleDashboard.textBlue}>{this.state.textBlue}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={StyleDashboard.viewBtnSettings}>
+              <TouchableOpacity
+                style={StyleDashboard.touchSettings}
+                activeOpacity={0.8}
+                onPress={() => this.props.navigation.navigate('Settings')}
+                disabled={this.state.disabledBtn}>
+                <Icon name="cog" size={hp('4%')} color={Globals.SALMON} />
+                <Text style={StyleDashboard.textSettings}>Ajustes</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <Snackbar
-          visible={this.state.show}
-          textMessage={(
-            <Text style={{fontFamily: 'DINPro-Bold_13934'}}>
-              {this.state.message}
-            </Text>
-          )}
-          actionHandler={() => {
-            this.setState({show: false});
-          }}
-          actionText="Cerrar"
-          backgroundColor={Globals.SALMON}
-          accentColor={'#FFFF'}
-          messageColor={'#FFFFFF'}
-        />
-      </SafeAreaView>
+          <Snackbar
+            visible={this.state.show}
+            textMessage={(
+              <Text style={{ fontFamily: 'DINPro-Bold' }}>
+                {this.state.message}
+              </Text>
+            )}
+            actionHandler={() => {
+              this.setState({ show: false });
+            }}
+            actionText="Cerrar"
+            backgroundColor={Globals.SALMON}
+            accentColor={'#FFFF'}
+            messageColor={'#FFFFFF'}
+          />
+        </SafeAreaView>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff',}}></View>
+      </View>
+
     );
   }
 }
 
 const options = {
   text: {
-    fontFamily: 'DINPro-Bold_13934',
-    fontSize: hp('5.1%'),
+    fontFamily: 'DINPro-Bold',
+    fontSize: hp('4.7%'),
     color: '#ffff',
   },
 };

@@ -266,10 +266,12 @@ export default class EfficiencyMonth extends Component {
     const d = this.state.days;
 
     return (
-      <SafeAreaView style={StylesEfficiency.container}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff'}}></View>
+        <SafeAreaView style={StylesEfficiency.container}>
         <Dialog
           visible={this.state.showDialog}
-          dialogTitle={<DialogTitle title="Meses" />}
+          dialogTitle={<DialogTitle title="Elige el mes" />}
           onTouchOutside={() => {
             this.setState({showDialog: false});
           }}
@@ -366,7 +368,7 @@ export default class EfficiencyMonth extends Component {
         <Snackbar
           visible={this.state.show}
           textMessage={
-            <Text style={{ fontFamily: 'DINPro-Bold_13934' }}>
+            <Text style={{ fontFamily: 'DINPro-Bold' }}>
               No existen datos
             </Text>
           }
@@ -379,6 +381,8 @@ export default class EfficiencyMonth extends Component {
           messageColor={'#FFFFFF'}
         />
       </SafeAreaView>
+        <View style={{width:wp('4%'),backgroundColor: '#ffff',}}></View>
+      </View>
     );
   }
 }
@@ -394,7 +398,7 @@ const _StylesEfficiency = StyleSheet.create({
       justifyContent: 'center'
   },
   textSpin:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('3.5%'),
       color: '#fff',
       paddingTop:hp('1.4%'),
@@ -402,33 +406,33 @@ const _StylesEfficiency = StyleSheet.create({
       
   },
   textAvgSpin:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('6.2%'),
       color: Globals.GREEN,
       paddingLeft:hp('3.8%')
   },
   textStrong:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('3.5%'),
       color: '#fff',
       paddingTop:hp('1.4%'),
       paddingLeft:hp('3.8%')
   },
   textAvgStrong:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('6.2%'),
       color: Globals.YELLOW,
       paddingLeft:hp('3.8%')
   },
   textVelo:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('3.5%'),
       color: '#fff',
       paddingTop:hp('1.4%'),
       paddingLeft:hp('3.8%')
   },
   textAvgVelo:{
-      fontFamily: 'DINPro-Bold_13934',
+      fontFamily: 'DINPro-Bold',
       fontSize: hp('6.2%'),
       color: Globals.ROSE,
       paddingLeft:hp('3.8%')

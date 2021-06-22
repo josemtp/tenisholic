@@ -23,11 +23,11 @@ export const StylesEfficiency = StyleSheet.create({
         flexDirection: 'column'
     },
     viewRowDate:{
-        flex:1/5,
+        flex:1/3,
         width: '100%',
     },
     textDate:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')
     },
     viewRowTime:{
@@ -35,8 +35,8 @@ export const StylesEfficiency = StyleSheet.create({
         width: '100%',
     },
     textTime:{
-        fontFamily: 'DINPro-Bold_13934',
-        fontSize: hp('5.8%')  
+        fontFamily: 'DINPro-Bold',
+        fontSize: hp('5%')  
     },
     viewBatteryImage:{
         flex: 1/2,
@@ -55,7 +55,7 @@ export const StylesEfficiency = StyleSheet.create({
     viewBattery:{
         width: '100%',
         flexDirection: 'row-reverse',
-        flex: 1/5,
+        //flex: 1,
         justifyContent: 'flex-start'
     },
     viewPaddingBatery:{
@@ -63,7 +63,7 @@ export const StylesEfficiency = StyleSheet.create({
         paddingLeft:hp('0.3%')
     },
     textBattery:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('2%')
     },
     viewImage:{
@@ -83,10 +83,11 @@ export const StylesEfficiency = StyleSheet.create({
         backgroundColor: "#000",
         flexDirection: 'column',
         borderRadius: wp('10%'),
-        height: 200
+        height: 200,
+        paddingBottom: hp('3%')
     },
     textSpin:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('3.5%'),
         color: '#fff',
         paddingTop:hp('1.4%'),
@@ -94,33 +95,33 @@ export const StylesEfficiency = StyleSheet.create({
         
     },
     textAvgSpin:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('5%'),
         color: Globals.GREEN,
         paddingLeft:hp('3.8%')
     },
     textStrong:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('3.5%'),
         color: '#fff',
         paddingTop:hp('1.4%'),
         paddingLeft:hp('3.8%')
     },
     textAvgStrong:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('5%'),
         color: Globals.YELLOW,
         paddingLeft:hp('3.8%')
     },
     textVelo:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('3.5%'),
         color: '#fff',
         paddingTop:hp('1.4%'),
         paddingLeft:hp('3.8%')
     },
     textAvgVelo:{
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
         fontSize: hp('5%'),
         color: Globals.ROSE,
         paddingLeft:hp('3.8%')
@@ -146,7 +147,7 @@ export const StylesEfficiency = StyleSheet.create({
     },
     textBlue:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     touchSettings:{
         justifyContent: 'center',
@@ -160,7 +161,7 @@ export const StylesEfficiency = StyleSheet.create({
     },
     textSettings:{
         fontSize: hp('2.5%'),
-        fontFamily: 'DINPro-Bold_13934',
+        fontFamily: 'DINPro-Bold',
     },
     buttonDialy:{
         elevation: 8,
@@ -171,7 +172,7 @@ export const StylesEfficiency = StyleSheet.create({
     },
     textButtonDialy:{
         fontSize: 18,
-        fontFamily: 'DINPro-Bold_13934'
+        fontFamily: 'DINPro-Bold'
     },
     separator:{
         paddingVertical: 10
