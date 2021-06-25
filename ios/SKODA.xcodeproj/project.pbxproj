@@ -16,8 +16,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* SKODATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SKODATests.m */; };
 		39C558A59B8174632E3F33DD /* libPods-SKODA-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC6E597028F25175C35B0286 /* libPods-SKODA-tvOSTests.a */; };
 		3FDB22E6262FD066006A1E65 /* bleplx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB22E5262FD066006A1E65 /* bleplx.swift */; };
-		50DD5E5E2682FBCA00277089 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 50DD5E5D2682FBCA00277089 /* main.jsbundle */; };
-		50DD5E60268614FC00277089 /* skoda.png in Resources */ = {isa = PBXBuildFile; fileRef = 50DD5E5F268614FB00277089 /* skoda.png */; };
+		50DD5F0D26865B4400277089 /* skoda.png in Resources */ = {isa = PBXBuildFile; fileRef = 50DD5F0C26865B4400277089 /* skoda.png */; };
 		87AEAB330679555BCC8C4B11 /* libPods-SKODA-SKODATests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EFA668510BD06A5B95CA0C /* libPods-SKODA-SKODATests.a */; };
 		8C739BF560A9B1F94EFAEEA0 /* libPods-SKODA-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D06ADE9BE0BD426E9E28F6 /* libPods-SKODA-tvOS.a */; };
 		BA7FD0BC465741248D413D31 /* DINPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80360738D3DC4130BFC69D3F /* DINPro-Bold.ttf */; };
@@ -42,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* SKODATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKODATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SKODATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKODATests.m; sourceTree = "<group>"; };
@@ -65,8 +65,7 @@
 		3FDB22E4262FD065006A1E65 /* SKODA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SKODA-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FDB22E5262FD066006A1E65 /* bleplx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleplx.swift; sourceTree = "<group>"; };
 		44D06ADE9BE0BD426E9E28F6 /* libPods-SKODA-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SKODA-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		50DD5E5D2682FBCA00277089 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		50DD5E5F268614FB00277089 /* skoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skoda.png; path = "../../../../Downloads/icono-app-skoda-1024/skoda.png"; sourceTree = "<group>"; };
+		50DD5F0C26865B4400277089 /* skoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skoda.png; path = "../../icono-app-skoda-1024/skoda.png"; sourceTree = "<group>"; };
 		5FA6BF326E394BBEB7C88005 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = ../src/assets/fonts/MaterialIcons.ttf; sourceTree = "<group>"; };
 		80360738D3DC4130BFC69D3F /* DINPro-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DINPro-Bold.ttf"; path = "../src/assets/fonts/DINPro-Bold.ttf"; sourceTree = "<group>"; };
 		803CB00018554E299AE669A1 /* DINPro-Bold_13934.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DINPro-Bold_13934.ttf"; path = "../src/assets/fonts/DINPro-Bold_13934.ttf"; sourceTree = "<group>"; };
@@ -151,13 +150,13 @@
 		13B07FAE1A68108700A75B9A /* SKODA */ = {
 			isa = PBXGroup;
 			children = (
-				50DD5E5D2682FBCA00277089 /* main.jsbundle */,
 				3FBF067A265706880072985C /* SKODA.entitlements */,
+				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				50DD5E5F268614FB00277089 /* skoda.png */,
+				50DD5F0C26865B4400277089 /* skoda.png */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -414,9 +413,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DD5F0D26865B4400277089 /* skoda.png in Resources */,
 				BA7FD0BC465741248D413D31 /* DINPro-Bold.ttf in Resources */,
-				50DD5E60268614FC00277089 /* skoda.png in Resources */,
-				50DD5E5E2682FBCA00277089 /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,7 +787,6 @@
 				DEVELOPMENT_TEAM = VZMS9W4YQH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SKODA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.10;
 				OTHER_LDFLAGS = (
@@ -799,7 +796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tenisholic.skoda;
 				PRODUCT_NAME = SKODA;
-				PROVISIONING_PROFILE_SPECIFIER = PPSKODAIOS;
+				PROVISIONING_PROFILE_SPECIFIER = mac;
 				SWIFT_OBJC_BRIDGING_HEADER = "SKODA-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -819,7 +816,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VZMS9W4YQH;
 				INFOPLIST_FILE = SKODA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.10;
 				OTHER_LDFLAGS = (
@@ -829,7 +825,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tenisholic.skoda;
 				PRODUCT_NAME = SKODA;
-				PROVISIONING_PROFILE_SPECIFIER = PPSKODAIOS;
+				PROVISIONING_PROFILE_SPECIFIER = AppleAllProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = "SKODA-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
